@@ -36,6 +36,8 @@ public class MorseRadio : MonoBehaviour, IInteractable
   public void disableInteraction()
   {
     morsePlayer.enabled = false;
+    morsePlayer.StopAllCoroutines();
+    morsePlayer.resetAfterStopCoroutines();
     isOn = false;
   }
 

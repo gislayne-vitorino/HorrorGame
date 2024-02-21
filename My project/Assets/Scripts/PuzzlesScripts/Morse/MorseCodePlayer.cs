@@ -12,7 +12,7 @@ public class MorseCodePlayer : MonoBehaviour {
 	public float letterDelay;
   private bool morseCodeEnded = true;
   private string selectedWord;
-  private float timer = 0.0f;
+  public float timer = 0.0f;
 	
 	private string[,] possibleWords = 
 	{
@@ -48,16 +48,22 @@ public class MorseCodePlayer : MonoBehaviour {
     selectedWord = possibleWords[correctSizeIndex,wordIndex];
 	}
 
-  void Update (){
-      if (morseCodeEnded)
-        timer += Time.deltaTime;
+  void Update ()
+  {
+    if (morseCodeEnded)
+      timer += Time.deltaTime;
 
-      if (timer >= 5.0f){
-        StartCoroutine(PlayMorseCodeMessage(selectedWord));
-        timer = 0f;
-      }
+    if (timer >= 5.0f){
+      StartCoroutine(PlayMorseCodeMessage(selectedWord));
+      timer = 0f;
     }
+  }
   
+  public void resetAfterStopCoroutines(){
+    morseCodeEnded = true;
+    timer = 0.0f;
+  }
+
 	private IEnumerator PlayMorseCodeMessage(string message)
 	{
     morseCodeEnded = false;
