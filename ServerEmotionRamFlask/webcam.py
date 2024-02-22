@@ -34,7 +34,7 @@ def process_video():
         for face_location in face_locations:
             (x1, y1), (x2, y2) = face_location  # Cada face detectada
             face = frame_rgb[y1:y2, x1:x2, :]
-            #emotion eh a variavel global que sera enviada pelo server flask quando requisitada
+
             emotion, scores = fer_pipeline.predict_emotions(
                 face, logits=True)  # Cada emoção detectada
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 3)
@@ -54,4 +54,5 @@ if __name__ == '__main__':
     video_thread = Thread(target=process_video)
     video_thread.daemon = True
     video_thread.start()
+
     app.run()
