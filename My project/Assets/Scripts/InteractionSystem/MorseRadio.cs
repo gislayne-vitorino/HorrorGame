@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class MorseRadio : MonoBehaviour, IInteractable
 {
-  [SerializeField] private string _prompt;
+  private string _prompt;
+  [SerializeField] private string onPrompt;
+  [SerializeField] private string offPrompt;
+  [SerializeField] private bool isOn = false;
   private MorseCodePlayer morsePlayer;
-
-  private bool isOn = false;
 
   public void Awake(){
       GameObject radio = transform.gameObject;
       morsePlayer = radio.GetComponent<MorseCodePlayer>();
+
+      if (isOn)
+        _prompt = onPrompt;
+      else 
+        _prompt = offPrompt;
     }
 
   public string InteractionPrompt => _prompt;
@@ -23,7 +29,6 @@ public class MorseRadio : MonoBehaviour, IInteractable
       disableInteraction();
     else
       enableInteraction();
-    
     return true;
   }
 
@@ -31,6 +36,7 @@ public class MorseRadio : MonoBehaviour, IInteractable
   {
     morsePlayer.enabled = true;
     isOn = true;
+    _prompt = onPrompt;
   }
 
   public void disableInteraction()
@@ -39,6 +45,7 @@ public class MorseRadio : MonoBehaviour, IInteractable
     morsePlayer.StopAllCoroutines();
     morsePlayer.resetAfterStopCoroutines();
     isOn = false;
+    _prompt = offPrompt;
   }
 
 }

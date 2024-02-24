@@ -6,19 +6,22 @@ using UnityEngine;
 public class Interactor : MonoBehaviour
 {
     private int _layerNumber = 8;
-
     private RaycastHit hitObject;
+    [SerializeField] private InteractionPromptUI interactionPromptUI;
 
      private void Update()
     {
-        if (Input.GetMouseButtonDown(0)){
-          Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-          
-          if (Physics.Raycast(ray, out hitObject, 50, 1<<_layerNumber))
-          {
-            hitObject.transform.GetComponent<IInteractable>().Interact(this);
-          }
-        }       
+      Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hitObject, 50, 1<<_layerNumber))
+        {
+          IInteractable clickedObject = hitObject.transform.GetComponent<IInteractable>();
+          interactionPromptUI.SetUp(clickedObject.InteractionPrompt);
+
+          if (Input.GetMouseButtonDown(0))
+            clickedObject.Interact(this);
+        } 
+        else
+          interactionPromptUI.Close();
     }
 
     private void OnDrawGizmos()

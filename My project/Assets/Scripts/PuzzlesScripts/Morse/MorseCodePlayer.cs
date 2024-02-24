@@ -12,7 +12,7 @@ public class MorseCodePlayer : MonoBehaviour {
 	public float letterDelay;
   private bool morseCodeEnded = true;
   private string selectedWord;
-  public float timer = 0.0f;
+  private float timer = 0.0f;
 	
 	private string[,] possibleWords = 
 	{
