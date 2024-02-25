@@ -1,42 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float walkSpeed = 0f;
-    public float runSpeed = 0f;
-    public float jumpPower = 0f;
-    public float gravity = 0f;
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
-    public float defaultHeight = 2f;
-    public float crouchHeight = 1f;
-    public float crouchSpeed = 3f;
-
-    private Vector3 moveDirection = Vector3.zero;
-    private float rotationX = 0;
-    private CharacterController characterController;
-
-    private bool canMove = true;
-
-    void Start()
-    {
-        characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+    public float moveSpeed = 5f; // Velocidade de movimento do jogador
 
     void Update()
     {
-        if (canMove)
-        {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
-        }
+        // Obtém os inputs de movimento horizontal e vertical
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // Calcula a direção de movimento com base nos inputs
+        Vector3 movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+        Vector3 movement = movementDirection * moveSpeed * Time.deltaTime;
+
+        transform.Translate(movement);
     }
 }
