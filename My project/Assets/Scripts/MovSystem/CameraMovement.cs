@@ -25,6 +25,7 @@ public class CameraMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        characterController.detectCollisions = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
