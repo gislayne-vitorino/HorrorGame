@@ -4984,6 +4984,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5861409178561632961, guid: 2930d4eb407392f41a7b89bc9fc141bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5861409178561632961, guid: 2930d4eb407392f41a7b89bc9fc141bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -1206874426333947015, guid: 2930d4eb407392f41a7b89bc9fc141bb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5016,6 +5024,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2930d4eb407392f41a7b89bc9fc141bb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1556212124}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2930d4eb407392f41a7b89bc9fc141bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1556212127}
   m_SourcePrefab: {fileID: 100100000, guid: 2930d4eb407392f41a7b89bc9fc141bb, type: 3}
 --- !u!1001 &799736593
 PrefabInstance:
@@ -7710,6 +7721,10 @@ PrefabInstance:
     - target: {fileID: 16038835297913163, guid: 7c7baabdbc078cb4098d5880fc72c0f3, type: 3}
       propertyPath: m_Name
       value: Pillar (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 16038835297913163, guid: 7c7baabdbc078cb4098d5880fc72c0f3, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 16038835297913163, guid: 7c7baabdbc078cb4098d5880fc72c0f3, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11454,6 +11469,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1556212123}
   speed: 2
+--- !u!114 &1556212127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556212120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cccc13ed27969345a664e40047a131f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1559574929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14501,6 +14528,10 @@ PrefabInstance:
     - target: {fileID: 16038835297913163, guid: 7c7baabdbc078cb4098d5880fc72c0f3, type: 3}
       propertyPath: m_Name
       value: Pillar (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 16038835297913163, guid: 7c7baabdbc078cb4098d5880fc72c0f3, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 16038835297913163, guid: 7c7baabdbc078cb4098d5880fc72c0f3, type: 3}
       propertyPath: m_StaticEditorFlags

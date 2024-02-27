@@ -9,12 +9,16 @@ public class ApiResponse
 }
 public class EmotionRamReq : MonoBehaviour
 {
-    
+    private float happinessTimer = 0f;    
     private bool characterVisible = true;
+    private float happinessDuration = 2f;
+    private MovMonster movMonster;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        movMonster = GetComponent<MovMonster>(); // Obtemos o componente ExampleScript associado ao GameObject
+
     }
 
     // Update is called once per frame
@@ -40,15 +44,23 @@ public class EmotionRamReq : MonoBehaviour
         ApiResponse apiResponse = JsonUtility.FromJson<ApiResponse>(response);
         if (apiResponse != null && apiResponse.emotion == "Happiness")
         {
-            HideCharacter();
+            happinessTimer += Time.deltaTime;
+            Debug.Log(happinessTimer);
+            if(happinessTimer >= happinessDuration){
+                HideCharacter();
+            }
         }else{
             ShowCharacter();
+            happinessTimer = 0f;
+
         }
     }
      void HideCharacter()
     {
         // Implemente o código para esconder o personagem
         characterVisible = false;
+        movMonster.enabled  = false;
+        Debug.Log("mataaaaa");
         gameObject.SetActive(false);
     }
     void ShowCharacter()
