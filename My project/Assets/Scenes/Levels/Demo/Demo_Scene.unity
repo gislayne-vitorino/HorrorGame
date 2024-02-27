@@ -11468,7 +11468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1556212123}
-  speed: 2
+  speed: 1
 --- !u!114 &1556212127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11481,6 +11481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cccc13ed27969345a664e40047a131f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1556212123}
 --- !u!1001 &1559574929
 PrefabInstance:
   m_ObjectHideFlags: 0

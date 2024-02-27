@@ -6,7 +6,8 @@ public class MovMonster : MonoBehaviour
 {
     private Transform target;
     public Rigidbody rb;
-    public float speed = 2f;
+    public float speed = 1f;
+    private bool triggerStayEnabled = true;
 
     private void Start()
     {
@@ -23,8 +24,19 @@ public class MovMonster : MonoBehaviour
         
     void OnTriggerStay(Collider player){
       
-            if(player.tag == "Player"){
+      
+            if(player.tag == "Player" && triggerStayEnabled==true){
               FollowPlayer();
             }
           }
+    public void EnableTriggerStay()
+    {
+        triggerStayEnabled = true;
+    }
+
+    // Método para desabilitar o OnTriggerStay
+    public void DisableTriggerStay()
+    {
+        triggerStayEnabled = false;
+    }
 }
