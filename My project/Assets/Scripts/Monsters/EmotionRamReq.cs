@@ -16,7 +16,7 @@ public class EmotionRamReq : MonoBehaviour
     private float idleDuration = 5f;
   
     private float requisitionTimer = 0f;
-    private float requisitionDuration = 0.5f;
+    private float requisitionDuration = 0.2f;
 
     private bool characterVisible = true;
     public Rigidbody rb;
@@ -36,7 +36,7 @@ public class EmotionRamReq : MonoBehaviour
     void Update()
     {
         //requisitionTimer += Time.deltaTime;
-       // if(requisitionTimer >= requisitionDuration){
+        //if(requisitionTimer >= requisitionDuration){
             StartCoroutine(GetRequest("http://127.0.0.1:5000/emotion"));
         //    requisitionTimer=0;
         //}
@@ -63,7 +63,7 @@ public class EmotionRamReq : MonoBehaviour
         if (apiResponse != null && apiResponse.emotion == "Happiness")
         {
             happinessTimer += Time.deltaTime;
-            //Debug.Log(happinessTimer);
+            Debug.Log(happinessTimer);
             if(happinessTimer >= happinessDuration){
                 HideCharacter();
                 idleTimer = 0f;
