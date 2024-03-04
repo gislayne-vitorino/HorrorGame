@@ -15,7 +15,9 @@ public class EmotionRamReq : MonoBehaviour
     private float idleTimer = 0f;  
     private float idleDuration = 5f;
   
-   
+    private float requisitionTimer = 0f;
+    private float requisitionDuration = 0.5f;
+
     private bool characterVisible = true;
     public Rigidbody rb;
     private MovMonster movMonster;
@@ -24,45 +26,36 @@ public class EmotionRamReq : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         movMonster = GetComponent<MovMonster>(); // Obtemos o componente ExampleScript associado ao GameObject
         movMonster.EnableTriggerStay();
-        idleTimer = 0f;
-
+        idleTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
-{
-    GetRequest("http://127.0.0.1:5000/emotion");
-}
-
-void GetRequest(string url)
-{
-    UnityWebRequest webRequest = UnityWebRequest.Get(url);
-    webRequest.SendWebRequest();
-    while (!webRequest.isDone)
     {
-        // Aguarda até que a requisição esteja concluída
+        //requisitionTimer += Time.deltaTime;
+       // if(requisitionTimer >= requisitionDuration){
+            StartCoroutine(GetRequest("http://127.0.0.1:5000/emotion"));
+        //    requisitionTimer=0;
+        //}
     }
+    IEnumerator GetRequest(string url)  {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url)){
+            yield return webRequest.SendWebRequest();
 
-    if (webRequest.isNetworkError)
-    {
-        Debug.Log("error: " + webRequest.error);
+            if(webRequest.isNetworkError){
+                Debug.Log("error: " + webRequest.error);
+
+            }else {
+                Debug.Log(webRequest.downloadHandler.text);
+                HandleApiResponse(webRequest.downloadHandler.text);
+            }
+        
+
+        }
     }
-    else
-    {
-        Debug.Log(webRequest.downloadHandler.text);
-        HandleApiResponse(webRequest.downloadHandler.text);
-    }
-
-    // Aguarda o intervalo antes da próxima requisição
-}
-
-IEnumerator WaitForNextRequest(float delay)
-{
-    yield return new WaitForSeconds(delay);
-}
 
     void HandleApiResponse(string response){
     
@@ -70,20 +63,18 @@ IEnumerator WaitForNextRequest(float delay)
         if (apiResponse != null && apiResponse.emotion == "Happiness")
         {
             happinessTimer += Time.deltaTime;
-            Debug.Log(happinessTimer);
+            //Debug.Log(happinessTimer);
             if(happinessTimer >= happinessDuration){
                 HideCharacter();
                 idleTimer = 0f;
-
             }
         }else{
             idleTimer += Time.deltaTime;
-            Debug.Log(happinessTimer);
+            //Debug.Log(happinessTimer);
             happinessTimer = 0f;
             if(idleTimer >= idleDuration){
                 movMonster.EnableTriggerStay();
             }
-
 
         }
     }
@@ -95,13 +86,7 @@ IEnumerator WaitForNextRequest(float delay)
         Debug.Log("mataaaaa");
         Vector3 pos =new Vector3(-3.768587f, -4.768372e-07f, -2.276852f);
         rb.MovePosition(Vector3.Lerp(rb.position, pos, moveSpeed * Time.fixedDeltaTime));
-        // Verificar se o objeto chegou à posição de destino
-       
-            
-            
         
-        
-        //gameObject.SetActive(false);
     }
     void ShowCharacter()
     {
