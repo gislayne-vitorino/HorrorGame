@@ -11,24 +11,31 @@ public class EmotionRamReq : MonoBehaviour
 {
     private float happinessTimer = 0f;
     private float happinessDuration = 2f;
-
+    private bool happinessFlag = true;
     private float idleTimer = 0f;  
     private float idleDuration = 5f;
   
-    private float requisitionTimer = 0f;
-    private float requisitionDuration = 0.2f;
+    public float interval = 0.002f; // Intervalo em segundos
+    private float lastExecutionTime = 0f;
+
+
 
     private bool characterVisible = true;
     public Rigidbody rb;
     private MovMonster movMonster;
+    private ReturnToBase returnMonster;
+
     private float moveSpeed = 0.1f; // Velocidade de movimento
 
 
     // Start is called before the first frame update
     void Start()
     {   
-        movMonster = GetComponent<MovMonster>(); // Obtemos o componente ExampleScript associado ao GameObject
+        movMonster = GetComponent<MovMonster>();
+        returnMonster = GetComponent<ReturnToBase>(); // Obtemos o componente ExampleScript associado ao GameObject
         movMonster.EnableTriggerStay();
+        returnMonster.DisableTriggerStay();
+
         idleTimer = 0;
     }
 
@@ -37,7 +44,14 @@ public class EmotionRamReq : MonoBehaviour
     {
         //requisitionTimer += Time.deltaTime;
         //if(requisitionTimer >= requisitionDuration){
+         if (Time.time - lastExecutionTime >= interval)
+        {
+            // Executa o comando desejado
             StartCoroutine(GetRequest("http://127.0.0.1:5000/emotion"));
+            // Atualiza o tempo da última execução
+            lastExecutionTime = Time.time;
+        }
+            
         //    requisitionTimer=0;
         //}
     }
@@ -62,18 +76,24 @@ public class EmotionRamReq : MonoBehaviour
         ApiResponse apiResponse = JsonUtility.FromJson<ApiResponse>(response);
         if (apiResponse != null && apiResponse.emotion == "Happiness")
         {
-            happinessTimer += Time.deltaTime;
+            //happinessTimer += Time.deltaTime;
             Debug.Log(happinessTimer);
-            if(happinessTimer >= happinessDuration){
+            if(Time.time - happinessTimer >= happinessDuration && happinessFlag){
                 HideCharacter();
                 idleTimer = 0f;
+                happinessFlag = false;
+                idleTimer = Time.time;
             }
         }else{
-            idleTimer += Time.deltaTime;
+            //idleTimer += Time.deltaTime;
             //Debug.Log(happinessTimer);
-            happinessTimer = 0f;
-            if(idleTimer >= idleDuration){
+            //happinessTimer = 0f;
+            if(Time.time - idleTimer >= idleDuration){
+                happinessFlag = true;
+                happinessDuration= Time.time;
                 movMonster.EnableTriggerStay();
+                returnMonster.DisableTriggerStay();
+
             }
 
         }
@@ -83,9 +103,11 @@ public class EmotionRamReq : MonoBehaviour
         // Implemente o código para esconder o personagem
         characterVisible = false;
         movMonster.DisableTriggerStay();
-        Debug.Log("mataaaaa");
-        Vector3 pos =new Vector3(-3.768587f, -4.768372e-07f, -2.276852f);
-        rb.MovePosition(Vector3.Lerp(rb.position, pos, moveSpeed * Time.fixedDeltaTime));
+        returnMonster.EnableTriggerStay();
+        //Debug.Log("mataaaaa");
+        //Vector3 pos =new Vector3(-3.768587f, -4.768372e-07f, -2.276852f);
+        
+        //rb.MovePosition(Vector3.Lerp(rb.position, pos, moveSpeed * Time.fixedDeltaTime));
         
     }
     void ShowCharacter()
