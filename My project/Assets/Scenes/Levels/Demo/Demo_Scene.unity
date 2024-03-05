@@ -1744,7 +1744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 216687122}
-  speed: 5
+  speed: 7
 --- !u!1001 &217631453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8808,6 +8808,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8229578808282972617, guid: 05e6d57175023e14f8baf91359625662, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229578808282972617, guid: 05e6d57175023e14f8baf91359625662, type: 3}
       propertyPath: distance
       value: 15
       objectReference: {fileID: 0}
@@ -8848,7 +8852,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3952678033440753220, guid: 05e6d57175023e14f8baf91359625662, type: 3}
-      insertIndex: -1
+      insertIndex: 5
       addedObject: {fileID: 216687125}
   m_SourcePrefab: {fileID: 100100000, guid: 05e6d57175023e14f8baf91359625662, type: 3}
 --- !u!1001 &1286434841
