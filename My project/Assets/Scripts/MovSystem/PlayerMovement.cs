@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,26 +9,34 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-
         Vector3 movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-
         Vector3 movement = movementDirection * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
 
-        if (IsCollidingWithWall())
+        // Verifica se houve colisão em alguma direção e impede o movimento nessa direção
+        if (IsCollidingWithWall(transform.forward) && verticalInput > 0f)
         {
-            Debug.Log("Sim, confirmo");
-            Vector3 movementDirectS = new Vector3(horizontalInput, 0f, -1f).normalized;
-            Vector3 movementS = movementDirectS * moveSpeed * Time.deltaTime;
-
-            transform.Translate(movementS);
+            movement.z = 0f;
         }
+        if (IsCollidingWithWall(-transform.forward) && verticalInput < 0f)
+        {
+            movement.z = 0f;
+        }
+        if (IsCollidingWithWall(transform.right) && horizontalInput > 0f)
+        {
+            movement.x = 0f;
+        }
+        if (IsCollidingWithWall(-transform.right) && horizontalInput < 0f)
+        {
+            movement.x = 0f;
+        }
+
+        transform.Translate(movement);
     }
 
-    private bool IsCollidingWithWall()
+    private bool IsCollidingWithWall(Vector3 direction)
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 0.5f))
+        if (Physics.Raycast(transform.position, direction, out hit, 0.5f))
         {
             if (hit.collider.CompareTag("Wall"))
             {
@@ -37,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
                 return true;
             }
         }
-
         return false;
     }
 }
