@@ -26,29 +26,37 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-
-        if (!IsCollidingWithScenario(movementDirection)){
-          Vector3 movement = movementDirection * moveSpeed * Time.deltaTime;
-          transform.Translate(movement);
-        }
+        Vector3 movement = movementDirection * moveSpeed * Time.deltaTime;
+        transform.Translate(movement);
     }
 
     private bool IsCollidingWithScenario(Vector3 movementDirection)
     {
-        RaycastHit hit;
-        Debug.DrawLine(transform.position, movementDirection*0.5f,Color.magenta);
-        Debug.Log(transform.forward);
-        if (Physics.Raycast(transform.position, movementDirection, out hit, 0.5f, wallsLayer))
-        {
-            Debug.Log("AQUIII");
-            return true;
-        }
+      Vector3 raycastOrigin = new Vector3(transform.position.x, 0, transform.position.z);
+      Vector3 raycastDirection = raycastOrigin;
+      RaycastHit hit;
+
+      if (movementDirection.z > 0)
+        raycastDirection = transform.forward;
+      else if (movementDirection.z < 0)
+        raycastDirection = Quaternion.AngleAxis(180, Vector3.up) * transform.forward;
+      else if (movementDirection.x > 0)
+        raycastDirection = transform.right;
+      else if (movementDirection.x < 0)
+        raycastDirection = Quaternion.AngleAxis(180, Vector3.up) * transform.right;
+      
+      if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, 0.5f, wallsLayer))
+      {
+          Debug.Log("AQUIII");
+          return true;
+      }
 
         return false;
     }
-
-    public void OnDrawGizmos(){
-      Gizmos.color = Color.red;
-      //Gizmos.DrawRay(transform.position, transform.forward *0.5f);
-    }
 }
+
+/*
+        Debug.DrawLine (transform.position, (transform.forward + movementDirection)*0.5f, Color.magenta);
+        
+        if (Physics.Raycast(transform.position, transform.position + movementDirection, out hit, 0.5f, wallsLayer))
+*/
