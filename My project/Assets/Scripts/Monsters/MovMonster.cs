@@ -20,10 +20,12 @@ public class MovMonster : MonoBehaviour
             }
     }
     void FollowPlayer(){
-            Vector3 pos = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            Vector3 targetPos = target.position;
+            targetPos.y = 0;
+            Vector3 pos = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             //Debug.Log (pos);
             rb.MovePosition(pos);
-            transform.LookAt(target);
+            transform.LookAt(targetPos);
         }
         
    
