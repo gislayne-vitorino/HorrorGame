@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SimonGameController : MonoBehaviour
@@ -35,8 +36,11 @@ public class SimonGameController : MonoBehaviour
             SetUpNextRound();
           }
         }
-        else
+        else{
           loseGame();
+          playerHaveMoved = false;
+          //sendSequenceToMonster(taskList);
+        }
       }
 
       if (coroutineSequenceEnded)
@@ -62,6 +66,7 @@ public class SimonGameController : MonoBehaviour
 
     public void addPlayerMove(int buttonId){
       playerList.Add(buttonId);
+      Debug.Log(buttonId);
       playerHaveMoved = true;
     }
 

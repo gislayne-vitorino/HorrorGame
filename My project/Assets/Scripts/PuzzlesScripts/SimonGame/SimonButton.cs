@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class SimonButton : MonoBehaviour
 {
-  [SerializeField] Material originalMaterial;
-  [SerializeField] Material highlightedMaterial;
-  [SerializeField] Renderer rendererReference;
-  [SerializeField] SimonGameController simonGame;
+  SimonGameController simonGame;
   [SerializeField] int buttonId;
 
-    private IEnumerator ChangeColor (){
-      rendererReference.material = highlightedMaterial;
-      yield return new WaitForSeconds(0.5f);
-      rendererReference.material = originalMaterial;
+    void Start (){
+      simonGame = GameObject.Find("SimonGameManager").GetComponent<SimonGameController>();
     }
 
     public void wasClicked (){
       simonGame.addPlayerMove(buttonId);
-      StartCoroutine(ChangeColor());
     }
 }

@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
       
       if (Physics.Raycast(raycastOrigin, raycastDirection, out hit, 0.5f, wallsLayer))
       {
-          Debug.Log("AQUIII");
+          //Debug.Log("AQUIII");
           return true;
       }
 
