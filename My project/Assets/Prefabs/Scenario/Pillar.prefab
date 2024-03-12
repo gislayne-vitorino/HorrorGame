@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7186397052036007447}
   - component: {fileID: 7684189352563455182}
   - component: {fileID: 5824083299607317780}
+  - component: {fileID: 3373349366490771323}
   m_Layer: 7
   m_Name: Pillar
   m_TagString: Untagged
@@ -83,3 +84,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3373349366490771323
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16038835297913163}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.61029875, y: 3.5057728, z: 0.61029875}
+  m_Center: {x: -0.00000011920929, y: 1.2990676, z: 0.00000011920929}
