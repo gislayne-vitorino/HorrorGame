@@ -10,10 +10,10 @@ public class ApiResponse
 public class EmotionRamReq : MonoBehaviour
 {
     private float happinessTimer = 0f;
-    private float happinessDuration = 2f;
+    public float happinessDuration = 2f;
     private bool happinessFlag = true;
     private float idleTimer = 0f;  
-    private float idleDuration = 5f;
+    public float idleDuration = 5f;
   
     public float interval = 0.002f; // Intervalo em segundos
     private float lastExecutionTime = 0f;
