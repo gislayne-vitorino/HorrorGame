@@ -32,7 +32,10 @@ def process_video():
             continue
 
         for face_location in face_locations:
-            (x1, y1), (x2, y2) = face_location  # Cada face detectada
+            try:
+                (x1, y1), (x2, y2) = face_location  # Cada face detectada
+            except:
+                pass
             face = frame_rgb[y1:y2, x1:x2, :]
 
             emotion, scores = fer_pipeline.predict_emotions(
