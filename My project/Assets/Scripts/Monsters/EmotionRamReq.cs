@@ -15,11 +15,13 @@ public class EmotionRamReq : MonoBehaviour
     private float idleTimer = 0f;  
     public float idleDuration = 5f;
   
+    
     public float interval = 0.002f; // Intervalo em segundos
     private float lastExecutionTime = 0f;
-
-
-
+    
+    private List<int> taskList = new List<int> { 0, 1, 2, 3 };
+    private List<string> emotionList = new List<string> { "Anger", "Sadness", "Happiness", "Surprise" };
+    private int actualState = 0;
     private bool characterVisible = true;
     public Rigidbody rb;
     private MovMonster movMonster;
@@ -74,11 +76,23 @@ public class EmotionRamReq : MonoBehaviour
     void HandleApiResponse(string response){
     
         ApiResponse apiResponse = JsonUtility.FromJson<ApiResponse>(response);
-        if (apiResponse != null && apiResponse.emotion == "Happiness")
-        {
+        if (apiResponse != null && apiResponse.emotion == emotionList[taskList[(actualState%(taskList.Count))]])
+        {   
+    
+                //Debug.Log("INICIO");
+                //Debug.Log(string.Join(", ", taskList));
+             
+            //Debug.Log(emotionList);
+            //Debug.Log(taskList);
+            
+            Debug.Log(emotionList[taskList[(actualState%(taskList.Count))]]);
+
             //happinessTimer += Time.deltaTime;
             Debug.Log(happinessTimer);
+            Debug.Log(Time.time);
+             Debug.Log(happinessFlag);
             if(Time.time - happinessTimer >= happinessDuration && happinessFlag){
+                actualState+=1;
                 HideCharacter();
                 idleTimer = 0f;
                 happinessFlag = false;
@@ -88,9 +102,9 @@ public class EmotionRamReq : MonoBehaviour
             //idleTimer += Time.deltaTime;
             //Debug.Log(happinessTimer);
             //happinessTimer = 0f;
+            happinessTimer=Time.time;
             if(Time.time - idleTimer >= idleDuration){
                 happinessFlag = true;
-                happinessDuration= Time.time;
                 movMonster.EnableTriggerStay();
                 returnMonster.DisableTriggerStay();
 
@@ -115,5 +129,12 @@ public class EmotionRamReq : MonoBehaviour
         // Implemente o código para mostrar o personagem
         characterVisible = true;
         gameObject.SetActive(true);
+    }
+
+    public void sendSequenceToMonster(List<int> newList)
+    {
+        // Implemente o código para mostrar o personagem
+
+        taskList= newList;
     }
 }

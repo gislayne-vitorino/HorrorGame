@@ -17,6 +17,7 @@ public class ShowNoGazeDetection : MonoBehaviour
     private float happinessTimer = 0f;
     public float happinessDuration = 2f;
     private bool characterVisible = true;
+    private bool happinessFlag = true;
 
     private void Start()
     {
@@ -32,24 +33,26 @@ public class ShowNoGazeDetection : MonoBehaviour
     {
         if (!TobiiAPI.GetGazePoint().IsRecent())
         {
-            UnityEngine.Debug.Log(happinessTimer);
-            if (Time.time - happinessTimer >= happinessDuration)
+            //UnityEngine.Debug.Log(happinessTimer);
+            if (Time.time - happinessTimer >= happinessDuration && happinessFlag)
             {
                 HideCharacter();
                 idleTimer = 0f;
                 idleTimer = Time.time;
+                happinessFlag = false;
             }
         }
         else
         {
+            happinessTimer = Time.time;
             if (Time.time - idleTimer >= idleDuration)
             {
-                happinessTimer = Time.time;
+                happinessFlag = true;
                 movMonster.EnableTriggerStay();
                 returnMonster.DisableTriggerStay();
 
             }
-            UnityEngine.Debug.Log("Eyes opened");
+            //UnityEngine.Debug.Log("Eyes opened");
         }
     }
 
