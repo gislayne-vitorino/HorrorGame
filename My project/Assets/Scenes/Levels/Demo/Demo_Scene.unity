@@ -9323,7 +9323,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 272806659639443676, guid: 05e6d57175023e14f8baf91359625662, type: 3}
       propertyPath: speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 322732357676069593, guid: 05e6d57175023e14f8baf91359625662, type: 3}
       propertyPath: m_Layer
@@ -9483,7 +9483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8229578808282972617, guid: 05e6d57175023e14f8baf91359625662, type: 3}
       propertyPath: speed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8229578808282972617, guid: 05e6d57175023e14f8baf91359625662, type: 3}
       propertyPath: distance

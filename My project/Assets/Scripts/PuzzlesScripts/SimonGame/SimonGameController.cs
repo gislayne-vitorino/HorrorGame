@@ -19,9 +19,14 @@ public class SimonGameController : MonoBehaviour
     [SerializeField] Renderer sequenceShower;
     [SerializeField] List<Material> materialsList;
 
+    public EmotionRamReq emotionMonster;
+
     void Start (){
+      GameObject m2Object = GameObject.Find("M2");
+      emotionMonster = m2Object.GetComponent<EmotionRamReq>();
       initGame();
       allButtons = GameObject.FindGameObjectsWithTag("SimonButton");
+      emotionMonster.sendSequenceToMonster(taskList);
     }
 
     void Update (){
@@ -39,7 +44,7 @@ public class SimonGameController : MonoBehaviour
         else{
           loseGame();
           playerHaveMoved = false;
-          //sendSequenceToMonster(taskList);
+          emotionMonster.sendSequenceToMonster(taskList);
         }
       }
 
