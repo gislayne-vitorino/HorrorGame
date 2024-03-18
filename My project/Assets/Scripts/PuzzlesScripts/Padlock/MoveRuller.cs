@@ -119,4 +119,22 @@ public class MoveRuller : MonoBehaviour
             }
         }
     }
+
+  public void disableInteraction()
+  {
+    enabled = false;
+    //Disable Ruler Blinking
+    _rullers[_changeRuller].GetComponent<PadLockEmissionColor>()._isSelect = false;
+    _rullers[_changeRuller].GetComponent<PadLockEmissionColor>().BlinkingMaterial();
+    _isActveEmission = false;
+  }
+
+  public void enableInteraction()
+  {
+    enabled = true;
+    //Blinking last Ruler moved
+    _rullers[_changeRuller].GetComponent<PadLockEmissionColor>()._isSelect = true;
+    _rullers[_changeRuller].GetComponent<PadLockEmissionColor>().BlinkingMaterial();
+    _isActveEmission = true;
+  }
 }
