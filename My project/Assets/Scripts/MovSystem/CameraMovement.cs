@@ -37,6 +37,8 @@ public class CameraMovement : MonoBehaviour
     void onStateChange(GameState gameState){
       if(gameState != GameState.Playing ){
         enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
       } else{
         enabled = true;
       }

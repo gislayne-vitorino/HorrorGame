@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &269027686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -620,7 +620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: JOGAR
+  m_text: TENTAR NOVAMENTE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8dfca6bc8881074797e804c946cebbb, type: 2}
   m_sharedMaterial: {fileID: 2076143076952136391, guid: f8dfca6bc8881074797e804c946cebbb, type: 2}
@@ -754,7 +754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Eyes of Fear
+  m_text: GAME OVER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: edbc29903e80fe74aa0ec12bbdc8dbac, type: 2}
   m_sharedMaterial: {fileID: 7352180725261531263, guid: edbc29903e80fe74aa0ec12bbdc8dbac, type: 2}
@@ -781,8 +781,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 180
-  m_fontSizeBase: 180
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

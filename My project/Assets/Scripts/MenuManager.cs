@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class MenuManager : MonoBehaviour
   public void setUp (GameState gameState){
     if (gameState == GameState.Victory)
     {
-      loseScreen.SetActive(false);
-      winScreen.SetActive(true);
+            //loseScreen.SetActive(false);
+            //winScreen.SetActive(true);
+            SceneManager.LoadScene("Win");
     } else if (gameState == GameState.Lose){
-      winScreen.SetActive(false);
-      loseScreen.SetActive(true);
-    }
+            //winScreen.SetActive(false);
+            //loseScreen.SetActive(true);
+            SceneManager.LoadScene("Lose");
+        }
   }
 }

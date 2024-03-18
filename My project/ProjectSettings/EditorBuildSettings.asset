@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Demo/Demo_Scene.unity
     guid: 1c6d75eaa80797041a20dd6a10c1f6d2
+  - enabled: 1
+    path: Assets/Scenes/Levels/Demo/Win.unity
+    guid: e02aa2bb6f19781449e0a441056677e9
+  - enabled: 1
+    path: Assets/Scenes/Levels/Demo/Lose.unity
+    guid: cf1d5ae785d63d84ebdb6c3531286c38
   m_configObjects: {}
