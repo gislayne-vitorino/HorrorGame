@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     
   }
   private void handleLoseState(){
-    
+    Debug.Log("deeeeeead");
   }
 
 }

@@ -62,7 +62,8 @@ public class EmotionRamReq : MonoBehaviour
             yield return webRequest.SendWebRequest();
 
             if(webRequest.isNetworkError){
-                Debug.Log("error: " + webRequest.error);
+                //Debug.Log("error: " + webRequest.error);
+                
 
             }else {
                 Debug.Log(webRequest.downloadHandler.text);
