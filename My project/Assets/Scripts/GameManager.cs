@@ -39,13 +39,13 @@ public class GameManager : MonoBehaviour
   }
 
   private void handlePlayingState(){
-
+    
   }
   private void handleFocusedState(){
     
   }
   private void handleVictoryState(){
-    
+    Debug.Log("You Win");
   }
   private void handleLoseState(){
     Debug.Log("deeeeeead");

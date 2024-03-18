@@ -7,10 +7,22 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f; // Velocidade de movimento do jogador
     private int wallsLayer;
 
+    void Awake(){
+      GameManager.OnGameStateChange += onStateChange;
+    }
+
     void Start (){
       int scenarioLayer = 1 << 7;
       int interactableScenarioLayer = 1 << 8;
       wallsLayer = scenarioLayer | interactableScenarioLayer;
+    }
+
+    void onStateChange(GameState gameState){
+      if(gameState != GameState.Playing ){
+        enabled = false;
+      } else{
+        enabled = true;
+      }
     }
 
     void Update()
@@ -45,13 +57,8 @@ public class PlayerMovement : MonoBehaviour
     {
        
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, movementDirection, out hit, 0.5f))
-        {
-            if (hit.collider.CompareTag("Wall"))
-            {
-                return true;
-            }
-        }
+        if (Physics.Raycast(transform.position, movementDirection, out hit, 0.5f, wallsLayer))
+          return true;
         return false;
     }
 

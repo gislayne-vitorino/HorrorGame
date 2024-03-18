@@ -36,6 +36,7 @@ public class Door : MonoBehaviour, IInteractable
     animator.SetBool("doorIsOpen", true);
     playerInventory.hasKey = false;
     disableInteraction();
+    GameManager.Instance.updateState(GameState.Victory);
   }
   private IEnumerator shakeDoor(){
     animator.SetBool("doorIsClosed", true);

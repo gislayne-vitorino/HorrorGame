@@ -11,6 +11,8 @@ public class SimonGameController : MonoBehaviour
     private bool coroutineSequenceEnded = true;
     private GameObject[] allButtons;
 
+    private Box box;
+
     public float timer = 0f;
     [SerializeField] private int initRounds;
     [SerializeField] private int totalRounds;
@@ -27,6 +29,7 @@ public class SimonGameController : MonoBehaviour
       initGame();
       allButtons = GameObject.FindGameObjectsWithTag("SimonButton");
       emotionMonster.sendSequenceToMonster(taskList);
+      box = GameObject.Find("Box").GetComponent<Box>();
     }
 
     void Update (){
@@ -93,6 +96,7 @@ public class SimonGameController : MonoBehaviour
         Button script = button.GetComponent<Button>();
         script.disableInteraction();
       }
+      box.simonGameWasSolved();
       disableSimonGame();
     }
 

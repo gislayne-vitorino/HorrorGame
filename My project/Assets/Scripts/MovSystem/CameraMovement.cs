@@ -22,12 +22,24 @@ public class CameraMovement : MonoBehaviour
 
     private bool canMove = true;
 
+    void Awake(){
+      GameManager.OnGameStateChange += onStateChange;
+    }
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         characterController.detectCollisions = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    void onStateChange(GameState gameState){
+      if(gameState != GameState.Playing ){
+        enabled = false;
+      } else{
+        enabled = true;
+      }
     }
 
     void Update()
