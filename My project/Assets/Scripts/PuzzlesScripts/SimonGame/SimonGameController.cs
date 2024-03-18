@@ -16,8 +16,8 @@ public class SimonGameController : MonoBehaviour
     [SerializeField] private int totalRounds;
 
     //!Isso nao deveria estar aqui, deveria criar outro script para isso
-    [SerializeField] Renderer sequenceShower;
-    [SerializeField] List<Material> materialsList;
+    [SerializeField] private Renderer sequenceShower;
+    [SerializeField] private List<Material> materialsList;
 
     public EmotionRamReq emotionMonster;
 
@@ -71,7 +71,6 @@ public class SimonGameController : MonoBehaviour
 
     public void addPlayerMove(int buttonId){
       playerList.Add(buttonId);
-      Debug.Log(buttonId);
       playerHaveMoved = true;
     }
 
@@ -105,14 +104,18 @@ public class SimonGameController : MonoBehaviour
 
     //!!Isso nao deveria estar aqui, deveria criar outro script para isso
     private IEnumerator showSequence(){
+      Material[] materials = sequenceShower.materials;;
       coroutineSequenceEnded = false;
       foreach(var buttonId in taskList) {
-        sequenceShower.material = materialsList[buttonId+1];
-        yield return new WaitForSeconds(1f);
-        sequenceShower.material = materialsList[0];
+        materials[1] = materialsList[buttonId+1];
+        sequenceShower.materials = materials;
+        yield return new WaitForSeconds(1f);        
+        materials[1] = materialsList[0];
+        sequenceShower.materials = materials;
         yield return new WaitForSeconds(.75f);
       }
-      sequenceShower.material = materialsList[0];
+      materials[1] = materialsList[0];
+      sequenceShower.materials = materials;
       coroutineSequenceEnded = true;
     }
 
